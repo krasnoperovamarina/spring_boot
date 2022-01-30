@@ -3,6 +3,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,6 +17,19 @@ public class User implements UserDetails {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "lastName")
+    private String lastName;
+
+    @Column(name = "age")
+    private int age;
+
+    @Column(name = "email")
+    private String email;
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     @Column(name = "password")
     private String password;
@@ -36,9 +50,12 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(int id, String name, String password, Set<Role> roles) {
+    public User(int id, String name, String lastName, int age, String email, String password, Set<Role> roles) {
         this.id = id;
         this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
         this.password = password;
         this.roles = roles;
     }
@@ -59,6 +76,9 @@ public class User implements UserDetails {
         this.name = name;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -92,5 +112,29 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

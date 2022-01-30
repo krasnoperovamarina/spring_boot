@@ -1,4 +1,5 @@
 package com.example.spring_boot.security;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/**").permitAll()
-                .and().formLogin().permitAll()
+                .and()
+                .formLogin().permitAll()
                 .successHandler(new LoginSuccessHandler());
 
         http.logout().permitAll();

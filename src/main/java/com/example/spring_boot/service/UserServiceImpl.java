@@ -1,5 +1,6 @@
 package com.example.spring_boot.service;
 
+import com.example.spring_boot.dao.RoleRepository;
 import com.example.spring_boot.dao.UserRepository;
 import com.example.spring_boot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,13 @@ public class UserServiceImpl implements UserService{
         if(Objects.nonNull(updatedUser.getUsername())) {
             userDB.setName(updatedUser.getName());
         }
+        if(Objects.nonNull(updatedUser.getLastName())) {
+            userDB.setLastName(updatedUser.getLastName());
+        }
+        userDB.setAge(updatedUser.getAge());
+        userDB.setLastName(updatedUser.getLastName());
+        userDB.setPassword(updatedUser.getPassword());
+        userDB.setRoles(updatedUser.getRoles());
         userRepository.save(updatedUser);
     }
 

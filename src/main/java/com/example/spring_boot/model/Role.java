@@ -2,6 +2,7 @@ package com.example.spring_boot.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
 
@@ -15,10 +16,14 @@ public class Role implements GrantedAuthority {
 
     @Transient
     @ManyToMany(mappedBy = "roles")
-    private Collection<User> users;
+    private Set<User> users;
 
     public Role() {
 
+    }
+    public Role(int id, String role) {
+        this.id = id;
+        this.role = role;
     }
     public Role(int id) {
         this.id = id;
@@ -44,13 +49,13 @@ public class Role implements GrantedAuthority {
         this.users = users;
     }
 
-    public Role(int id, String role) {
-        this.id = id;
-        this.role = role;
+    @Override
+    public String getAuthority() {
+        return role;
     }
 
     @Override
-    public String getAuthority() {
+    public String toString() {
         return role;
     }
 }

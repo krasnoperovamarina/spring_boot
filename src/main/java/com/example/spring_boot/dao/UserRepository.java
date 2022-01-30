@@ -9,10 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-    public User findByName(String name);
-//    @Modifying
-//    @Query("update User u set u.name = :name where u.id = :id")
-//    void update(@Param(value = "id") int id, @Param(value = "updateUser") User updateUser);
-
+    User findByName(String name);
 }
 
